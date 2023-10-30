@@ -1,0 +1,68 @@
+<!--
+/**
+ * MageINIC
+ * Copyright (C) 2023 MageINIC <support@mageinic.com>
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see https://opensource.org/licenses/gpl-3.0.html.
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category MageINIC
+ * @package MageINIC_FaqGraphql
+ * @copyright Copyright (c) 2023 MageINIC (https://www.mageinic.com/)
+ * @license https://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MageINIC <support@mageinic.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\StoreGraphQl\Model\Resolver\Store\StoreConfigDataProvider">
+        <arguments>
+            <argument name="extendedConfigData" xsi:type="array">
+                <item name="faq_general_enable"
+                      xsi:type="string">mageinic/general/faq_enable</item>
+                <item name="faq_general_faq_questions_display"
+                      xsi:type="string">mageinic/general/faq_questions_display</item>
+                <item name="faq_general_footer_link_display"
+                      xsi:type="string">mageinic/general/footer_link_display</item>
+                <item name="faq_general_page_title"
+                      xsi:type="string">mageinic/general/page_title</item>
+                <item name="faq_general_meta_keywords"
+                      xsi:type="string">mageinic/general/meta_keywords</item>
+                <item name="faq_general_meta_description"
+                      xsi:type="string">mageinic/general/meta_description</item>
+                <item name="faq_slider_setting_enable_slider"
+                      xsi:type="string">mageinic/slider_setting/enable_slider</item>
+                <item name="faq_slider_setting_slider_title"
+                      xsi:type="string">mageinic/slider_setting/slider_title</item>
+                <item name="faq_slider_setting_slider_speed"
+                      xsi:type="string">mageinic/slider_setting/slider_speed</item>
+                <item name="faq_slider_setting_infinite_looping"
+                      xsi:type="string">mageinic/slider_setting/infinite_looping</item>
+                <item name="faq_slider_setting_autoplay"
+                      xsi:type="string">mageinic/slider_setting/autoplay</item>
+                <item name="faq_slider_setting_arrows"
+                      xsi:type="string">mageinic/slider_setting/arrows</item>
+                <item name="faq_slider_setting_dot"
+                      xsi:type="string">mageinic/slider_setting/dot</item>
+                <item name="faq_slider_setting_autoplay_speed"
+                      xsi:type="string">mageinic/slider_setting/autoplay_speed</item>
+                <item name="faq_slider_setting_slide_to_default"
+                      xsi:type="string">mageinic/slider_setting/slide_to_default</item>
+                <item name="faq_slider_setting_slick_to_default"
+                      xsi:type="string">mageinic/slider_setting/slick_to_default</item>
+                <item name="faq_slider_setting_breakpoints"
+                      xsi:type="string">mageinic/slider_setting/breakpoints</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

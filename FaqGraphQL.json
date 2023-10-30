@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "afe49e45-6639-46e0-ae3f-d7d52ff3782c",
+		"name": "FaqGraphQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "system_config",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{ \n    storeConfig {\n        faq_general_enable\n        faq_general_faq_questions_display\n        faq_general_footer_link_display\n        faq_general_page_title\n        faq_general_meta_keywords\n        faq_general_meta_description\n        faq_slider_setting_enable_slider\n        faq_slider_setting_slider_title\n        faq_slider_setting_slider_speed\n        faq_slider_setting_infinite_looping\n        faq_slider_setting_autoplay\n        faq_slider_setting_arrows\n        faq_slider_setting_dot\n        faq_slider_setting_autoplay_speed\n        faq_slider_setting_slide_to_default\n        faq_slider_setting_slick_to_default\n        faq_slider_setting_breakpoints\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/graphql",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "faq details",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\n  Category(filter: {category_id:{eq:\"2\"}},pageSize: 5, currentPage: 1) {\n    items {\n      category_id\n      category_name\n      image\n      Faq (pageSize: 5, currentPage: 1) {\n        items{\n          faq_id\n          category_id\n          status\n          title\n          answer\n          sender_name\n          sender_email\n          visibility\n          most_frequently\n        }\n        total_count\n      }\n    }\n    total_count\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/graphql",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create Faq",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  CreateFaq(\n    input: {\n      category_id: 3,\n      title: \"is this title for faq question?\",\n      answer: \"Your FAQ Answer\",\n      status: 1,\n      most_frequently: 10,\n      sender_name: \"sender\",\n      sender_email: \"your.email@example.com\",\n      visibility: 1\n    }\n  ) {\n    category_id\n    title\n    answer\n    status\n    most_frequently\n    sender_name\n    sender_email\n    visibility\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/graphql",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

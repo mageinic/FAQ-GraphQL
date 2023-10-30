@@ -1,0 +1,97 @@
+type Query {
+    Category(
+     filter: CategoryFilterInput @doc(description: "Apply filters by filed.")
+     pageSize: Int = 5 @doc(description: "The maximum number of pickup locations to return at once. The attribute is optional.")
+     currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+     ):CategoryOutput @doc(description: "Get list of User With Filter")
+     @resolver(class: "MageINIC\\FaqGraphql\\Model\\Resolver\\Category")
+     @cache(cacheIdentity: "MageINIC\\FaqGraphql\\Model\\Resolver\\Block\\Identity")
+}
+input CategoryFilterInput {
+    category_id: FilterTypeInput  @doc(description: "The unique ID Entity Id.")
+    status: FilterTypeInput  @doc(description: "Enable or disable filter values.")
+}
+type Category {
+    category_id: String @doc(description: "The unique Category Id")
+    category_name: String @doc(description: "The ID of a CMS page.")
+    image : String @doc(description: "The ID of a CMS page.")
+    status : Int @doc(description: "The ID of a CMS page.")
+    Faq(
+        pageSize: Int = 20 @doc(description: "The maximum number of results to return at once. The default value is 20."),
+        currentPage: Int = 1 @doc(description: "The page of results to return. The default value is 1."),
+        sort: FaqSortInput @doc(description: "Specifies which filed to sort on, and whether to return the results in ascending or descending order.")
+     ): FaqOutput @doc(description: "The list of faq assigned to the Slider.")
+     @resolver(class: "MageINIC\\FaqGraphql\\Model\\Resolver\\Faq")
+
+}
+type CategoryOutput {
+    total_count:  Int @doc(description: "Get Total Count")
+    items: [Category] @doc(description: "The number of records returned.")
+}
+type Faq {
+    faq_id: Int @doc(description: "Get Faq Id")
+    category_id: Int @doc(description: "Get Category Id")
+    status: Int @doc(description: "Get Status")
+    title: String @doc(description: "Get Title")
+    answer: String @doc(description: "Get Answer")
+    sender_name: String @doc(description: "Get Sender Name")
+    sender_email: String @doc(description: "Get Sender Email")
+    visibility: Int @doc(description: "Get Visibility")
+    most_frequently: Int @doc(description: "Get Most Frequently")
+}
+input FaqSortInput @doc(description: "FaqSortInput specifies the attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order.") {
+    faq_id: SortEnum @doc(description: "Id of the User")
+    name: SortEnum @doc(description: "First Name of the User.")
+}
+type FaqOutput @doc(description: "Contains details about the products assigned to a category.") {
+    items: [Faq] @doc(description: "An array of faq that are assigned to the slider.")
+    total_count:  Int @doc(description: "Get Total Count")
+}
+
+type StoreConfig {
+    faq_general_enable: String @doc(description: "Enable Functionality")
+    faq_general_faq_questions_display : String @doc(description: "Enable Faq Questions Display")
+    faq_general_footer_link_display : String @doc(description: "Enable Footer Link")
+    faq_general_page_title : String @doc(description: "Page Title of faq page")
+    faq_general_meta_keywords : String @doc(description: "Meta Keywords")
+    faq_general_meta_description : String @doc(description: "Meta Description")
+    faq_slider_setting_enable_slider : String @doc(description: "Enable or Disable Slider")
+    faq_slider_setting_slider_title : String @doc(description: "Slider Title")
+    faq_slider_setting_slider_speed : String @doc(description: "Sliding Speed")
+    faq_slider_setting_infinite_looping : String @doc(description: "Enable or Disable infinite play")
+    faq_slider_setting_autoplay : String @doc(description: "Enable or Disable Auto Moving")
+    faq_slider_setting_arrows : String @doc(description: "Enable or Disable Arrows")
+    faq_slider_setting_dot : String @doc(description: "Enable or Disable Dots")
+    faq_slider_setting_autoplay_speed : String @doc(description: "Auto Moving Speed")
+    faq_slider_setting_slide_to_default : String @doc(description: "Slide To Default")
+    faq_slider_setting_slick_to_default : String @doc(description: "Slick To Default")
+    faq_slider_setting_breakpoints : String @doc(description: "Break Points")
+}
+
+type Mutation {
+    CreateFaq(
+        input: FaqInput! @doc(description: "An input object that defines the testimonial to be created.")
+    ): CreateFaqOutput
+    @resolver(class: "\\MageINIC\\FaqGraphql\\Model\\Resolver\\CreateFaq")
+    @doc(description: "Create Faq")
+}
+input FaqInput @doc(description: "Add Faq Input") {
+    category_id: Int @doc(description: "Get Faq Id"),
+    title: String @doc(description: "Get Title"),
+    answer: String @doc(description: "Get Title"),
+    status: Int @doc(description: "Get Faq Id"),
+    most_frequently: Int @doc(description: "Get Faq Id"),
+    sender_name: String @doc(description: "Get Title"),
+    sender_email: String @doc(description: "Get Title"),
+    visibility: Int @doc(description: "Get Faq Id")
+}
+type CreateFaqOutput {
+  category_id: Int @doc(description: "Get Faq Id"),
+  title: String @doc(description: "Get Title")
+  answer: String @doc(description: "Get Title")
+  status: Int @doc(description: "Get Faq Id")
+  most_frequently: Int @doc(description: "Get Faq Id")
+  sender_name: String @doc(description: "Get Sender Name")
+  sender_email: String @doc(description: "Get Sender Title")
+  visibility: Int @doc(description: "Get visibility")
+}
